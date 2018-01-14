@@ -4,6 +4,6 @@ import { mapToProps as dataProps } from './modules/data'
 export default function (state) {
   return {
     ui: uiProps(state),
-    orders: dataProps(state)
+    data: dataProps(state)
   }
 }
