@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import { actions as dataActions } from './data'
+
 export const types = {
   LOADING: 'ui/loading',
   ERROR: 'ui/error'
@@ -29,9 +31,10 @@ export const actions = {
       const state = getState()
       dispatch(actions.loading(true))
       return axios.get(state.ui.apiUrl)
-      .then(function (data) {
+      .then(function (response) {
+        console.log('action', dataActions.setData(response.data || {}))
         dispatch(actions.loading(false))
-        console.log('data', data)
+        dispatch(dataActions.setData(response.data || {}))
       })
       .catch(function (error) {
 
