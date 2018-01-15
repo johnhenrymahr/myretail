@@ -22,7 +22,6 @@ export function getImages (source) {
   return images
 }
 
-
 export function getPricing (source) {
   return {
     price: _.get(source, 'CatalogEntryView[0].Offers[0].OfferPrice[0].formattedPriceValue', null),
@@ -38,7 +37,7 @@ export function getSkuDetails (source) {
     id: base.itemId,
     type: base.itemType,
     classId: base.classId
-  }  
+  }
 }
 
 export function getPromotions (source) {
@@ -50,12 +49,12 @@ export function getPromotions (source) {
 export function getAvailability (source) {
   const channelCode = parseInt(_.get(source, 'CatalogEntryView[0].purchasingChannelCode', 0), 10)
   return {
-    online: Boolean( channelCode === 0 || channelCode === 1 ),
-    instore: Boolean( channelCode === 0 || channelCode === 2 )
+    online: Boolean(channelCode === 0 || channelCode === 1),
+    instore: Boolean(channelCode === 0 || channelCode === 2)
   }
 }
 
-export function getFeatures(source) {
+export function getFeatures (source) {
   return _.get(source, 'CatalogEntryView[0].ItemDescription[0].features', []).map((item) => {
     const key = item.match(/<strong>(.*?)<\/strong>/g)
     const val = item.replace((key[0] || ''), '')
@@ -76,14 +75,13 @@ export function getReviews (source) {
       title: _.get(source, 'CatalogEntryView[0].CustomerReview[0].Pro[0].title'),
       review: _.get(source, 'CatalogEntryView[0].CustomerReview[0].Pro[0].review'),
       date: _.get(source, 'CatalogEntryView[0].CustomerReview[0].Pro[0].datePosted')
-    },  
+    },
     con: {
       rating: _.get(source, 'CatalogEntryView[0].CustomerReview[0].Con[0].overallRating'),
       screenName: _.get(source, 'CatalogEntryView[0].CustomerReview[0].Con[0].screenName'),
       title: _.get(source, 'CatalogEntryView[0].CustomerReview[0].Con[0].title'),
       review: _.get(source, 'CatalogEntryView[0].CustomerReview[0].Con[0].review'),
       date: _.get(source, 'CatalogEntryView[0].CustomerReview[0].Con[0].datePosted')
-    }  
+    }
   }
 }
-

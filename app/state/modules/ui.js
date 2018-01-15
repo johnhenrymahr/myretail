@@ -9,8 +9,8 @@ export const types = {
 }
 
 export default function (state = {}, action = {}) {
-  switch(action.type) {
-    case types.LOADING: 
+  switch (action.type) {
+    case types.LOADING:
       return {
         ...state,
         loading: action.payload
