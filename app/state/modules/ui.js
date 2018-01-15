@@ -1,4 +1,4 @@
-import axios from 'axios'
+import request from '../../helpers/request'
 
 import { actions as dataActions } from './data'
 
@@ -41,15 +41,13 @@ export const actions = {
     return function (dispatch, getState) {
       const state = getState()
       dispatch(actions.loading(true))
-      return axios.get(state.ui.apiUrl)
-      .then(function (response) {
-        dispatch(actions.loading(false))        
-        dispatch(dataActions.setData(response.data || {}))
-        dispatch(actions.hydrated())
-      })
-      .catch(function (error) {
-
-      })
+      return request(state.ui.apiUrl, 'get')
+        .then(function (response) {
+          dispatch(actions.loading(false))
+          dispatch(dataActions.setData(response.data || {}))
+          dispatch(actions.hydrated())
+        })
+        .catch(function (error) {})
     }
   }
 }
