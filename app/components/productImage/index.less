@@ -1,0 +1,65 @@
+@import (reference) '../../common.less';
+
+.myRetail-productImage {
+  margin-top: 50px;
+
+  .carousel-control.left, .carousel-control.right {
+    background: none;
+    text-shadow: none;
+  }
+  .glyphicon {
+    font-weight: lighter;
+    color: gray;
+  }
+  &__main {
+    width: 100%;
+    text-align: center;
+    >div {
+      margin-bottom: 50px;
+    }
+  }
+  &__fullsize {
+    text-align: center;
+    color: @gray25;
+    font-size: 11px;
+    margin-bottom: 10px;
+    >a {
+      color: @gray25;
+      letter-spacing: .25px;
+    }
+    .glyphicon {
+      font-size: 22px;
+      color: @gray25;
+      padding-right: 5px;
+      position: relative;
+      top: 6px;
+    }
+  }
+  &__carousel {
+    margin: 10px 40px;
+    .glyphicon-menu-left, .glyphicon-menu-right {
+      position: absolute;
+      top: 50%;
+      margin-top: -10px;
+    }
+    .carousel-control.left, .carousel-control.right {
+      width: 60px;
+    }
+    &--image {
+      width: 220px;
+      margin: auto;
+      > a {
+        display: inline-block;
+        padding-right: 5px;
+        padding-left: 5px;
+        &:hover {
+          >img {
+            border: 1px solid gray;
+          }
+         
+        }
+      }
+    }
+
+  }
+}

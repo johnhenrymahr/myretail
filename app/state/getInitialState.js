@@ -5,7 +5,8 @@ export default function getInitialState (source) {
     ui: {
       apiUrl: source.apiUrl || '/api/lineItem',
       loading: false,
-      pageError: false
+      pageError: false,
+      hydrated: false
     },
     data: {}
   }

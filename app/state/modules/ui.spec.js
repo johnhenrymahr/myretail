@@ -6,6 +6,10 @@ describe('UI state module spec', () => {
       expect(reducer({foo: 'bar', loading: false}, { type: types.LOADING, payload: true }))
       .toEqual({foo: 'bar', loading: true})
     })
+    it('sets the hydrated prop', () => {
+      expect(reudcer({hydrated: false, foo: 'bar'}))
+      .toEqual({foo: 'bar', hydrated: true})
+    })
   })
   context('action creators', () => {
     it('creats a loading action', () => {
@@ -13,6 +17,12 @@ describe('UI state module spec', () => {
       .toEqual({
         type: types.LOADING,
         payload: true
+      })
+    })
+    it('creates hydrated action', () => {
+      expect(actions.hydrated())
+      .toEqual({
+        type: types.HYDRATED
       })
     })
   })
