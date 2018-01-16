@@ -88,12 +88,13 @@ if (TARGET === 'start') {
   let CleanWebpackPlugin = require('clean-webpack-plugin')
   let WebpackAutoInject = require('webpack-auto-inject-version')
   let ArchivePlugin = require('webpack-archive-plugin')
+  let HtmlWebpackPlugin = require('html-webpack-plugin')
 
   module.exports = merge(common, {
     output: {
       path: PATHS.build,
       publicPath: '',
-      filename: 'js/bundle.js-[chunkhash]'
+      filename: 'js/bundle-[chunkhash].js'
     },
     module: {
       rules: [
@@ -137,14 +138,13 @@ if (TARGET === 'start') {
         PATHS.build,
         path.join(__dirname, '*.zip'),
         path.join(__dirname, '*.tar'),
-        path.join(__dirname, '*.tar.gz'),
-        path.join(__dirname, '*.war')
+        path.join(__dirname, '*.tar.gz')
       ], {
         verbose: true,
         dry: false
       }),
       new ExtractTextPlugin({
-        filename: 'css/styles.css-[contenthash]',
+        filename: 'css/styles-[contenthash].css',
         allChunks: true
       }),
       new webpack.DefinePlugin({
@@ -173,6 +173,10 @@ if (TARGET === 'start') {
             css: data.assetsByChunkName.main[1].split('/')[1]
           }, null, 2)
         }
+      }),
+      new HtmlWebpackPlugin({
+        title: 'My Retail Page',
+        template: path.join(__dirname, 'templates', 'prod.html')
       }),
       new ArchivePlugin()
     ]
