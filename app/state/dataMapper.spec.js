@@ -19,7 +19,7 @@ describe('dataMapper spec', () => {
   })
   context('getAvailability', () => {
     it('set getAvailability for code 0', () => {
-      const d =  {
+      const d = {
         CatalogEntryView: [
           {
             purchasingChannelCode: 0
@@ -30,7 +30,7 @@ describe('dataMapper spec', () => {
       expect(getAvailability(d).instore).toEqual(true)
     })
     it('set getAvailability for code 1', () => {
-      const d =  {
+      const d = {
         CatalogEntryView: [
           {
             purchasingChannelCode: '1'
@@ -41,7 +41,7 @@ describe('dataMapper spec', () => {
       expect(getAvailability(d).instore).toEqual(false)
     })
     it('set avaialbiltiy for code 2', () => {
-      const d =  {
+      const d = {
         CatalogEntryView: [
           {
             purchasingChannelCode: 2
@@ -66,32 +66,32 @@ describe('dataMapper spec', () => {
   context('getFeatures', () => {
     it('parses feature corectly', () => {
       expect(getFeatures(data)[0])
-      .toEqual({
-        k: 'Wattage Output:',
-        v: '1100 Watts'
-      })
+        .toEqual({
+          k: 'Wattage Output:',
+          v: '1100 Watts'
+        })
     })
   })
   context('getReviews export', () => {
     it('renders a pro object', () => {
       expect(getReviews(data).pro)
-      .toEqual({
-        rating: '5',
-        screenName: 'Eric',
-        title: 'Fantastic Blender',
-        review: 'This blender works amazingly, and blends within seconds.  The single serve cups also work really well for smoothies or protein shakes!',
-        date: 'Thu Apr 18 19:42:19 UTC 2013'
-      })
+        .toEqual({
+          rating: '5',
+          screenName: 'Eric',
+          title: 'Fantastic Blender',
+          review: 'This blender works amazingly, and blends within seconds.  The single serve cups also work really well for smoothies or protein shakes!',
+          date: 'Thu Apr 18 19:42:19 UTC 2013'
+        })
     })
     it('renders a con object', () => {
       expect(getReviews(data).con)
-      .toEqual({
-        rating: '1',
-        screenName: 'New York',
-        title: 'Very unhappy',
-        review: 'Less than 2 months after purchase it completely stopped working. First it wouldn\'t detect the pitcher when trying to blend a significant amount, a couple weeks later it wouldn\'t detect the single serve cup. ',
-        date: 'Mon Mar 11 13:13:55 UTC 2013'
-      })
+        .toEqual({
+          rating: '1',
+          screenName: 'New York',
+          title: 'Very unhappy',
+          review: 'Less than 2 months after purchase it completely stopped working. First it wouldn\'t detect the pitcher when trying to blend a significant amount, a couple weeks later it wouldn\'t detect the single serve cup. ',
+          date: 'Mon Mar 11 13:13:55 UTC 2013'
+        })
     })
     it('extracts extra props', () => {
       expect(getReviews(data).overallRating).toEqual('4')

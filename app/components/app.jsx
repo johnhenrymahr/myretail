@@ -9,12 +9,10 @@ import ProductFeatures from './ProductFeatures'
 import './app.less'
 
 class App extends Component {
-
   componentWillMount () {
     this.props.actions.ui.loadData()
   }
 
-  
   renderBody () {
     const { data } = this.props
     const title = _.get(data, 'skuDetails.title', '')
@@ -22,21 +20,21 @@ class App extends Component {
       <main className='myRetail-item'>
         <div className='row'>
           <div className='col-xs-12 col-sm-6'>
-          <h1>{title}</h1>          
-            <ProductImage 
+            <h1>{title}</h1>
+            <ProductImage
               images={data.images}
             />
           </div>
           <div className='col-xs-12 col-sm-6'>
-          <PriceBlock
-            {...data.pricing}
-            {...data.availability}
-            {...data.skuDetails}
-            promotions={data.promotions}
-          />
-          <ProductFeatures
-            features={data.features || []}
-          />  
+            <PriceBlock
+              {...data.pricing}
+              {...data.availability}
+              {...data.skuDetails}
+              promotions={data.promotions}
+            />
+            <ProductFeatures
+              features={data.features || []}
+            />
           </div>
         </div>
         <div className='row'>
@@ -55,12 +53,12 @@ class App extends Component {
       return null
     }
   }
-
 }
 
 App.propTypes = {
   ui: PropTypes.object,
-  data: PropTypes.object
+  data: PropTypes.object,
+  actions: PropTypes.object
 }
 
 export const undecorated = App
