@@ -4,6 +4,7 @@ const webpack = require('webpack')
 const MD5HashPlugin = require('md5-hash-webpack-plugin')
 const merge = require('webpack-merge')
 const TARGET = process.env.npm_lifecycle_event
+const StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
@@ -82,14 +83,17 @@ if (TARGET === 'start') {
   })
 } else if (TARGET === 'build' || TARGET === 'prepublish') {
   let autoprefixer = require('autoprefixer')
+  let cssnano = require('cssnano')
   let ExtractTextPlugin = require('extract-text-webpack-plugin')
   let CleanWebpackPlugin = require('clean-webpack-plugin')
   let WebpackAutoInject = require('webpack-auto-inject-version')
+  let ArchivePlugin = require('webpack-archive-plugin')
+
   module.exports = merge(common, {
     output: {
       path: PATHS.build,
       publicPath: '',
-      filename: 'js/bundle.js'
+      filename: 'js/bundle.js-[chunkhash]'
     },
     module: {
       rules: [
@@ -107,7 +111,8 @@ if (TARGET === 'start') {
                   plugins: [
                     autoprefixer({
                       browsers: ['> 5%']
-                    })
+                    }),
+                    cssnano()
                   ]
                 }
               },
@@ -128,18 +133,24 @@ if (TARGET === 'start') {
         }]
     },
     plugins: [
+      new CleanWebpackPlugin([
+        PATHS.build,
+        path.join(__dirname, '*.zip'),
+        path.join(__dirname, '*.tar'),
+        path.join(__dirname, '*.tar.gz'),
+        path.join(__dirname, '*.war')
+      ], {
+        verbose: true,
+        dry: false
+      }),
       new ExtractTextPlugin({
-        filename: 'css/orders-styles.css',
+        filename: 'css/styles.css-[contenthash]',
         allChunks: true
       }),
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: JSON.stringify('production')
         }
-      }),
-      new webpack.optimize.CommonsChunkPlugin({
-        children: true,
-        async: true
       }),
       new webpack.optimize.UglifyJsPlugin({
         sourceMap: true,
@@ -149,15 +160,21 @@ if (TARGET === 'start') {
         }
       }),
       new MD5HashPlugin(),
-      new CleanWebpackPlugin([PATHS.build], {
-        verbose: true,
-        dry: false
-      }),
       new WebpackAutoInject({
         autoIncrease: false,
         injectByTag: false,
         injectAsComment: true
-      })
+      }),
+      new StatsWriterPlugin({
+        filename: 'stats/stats.json',
+        transform: function (data, opts) {
+          return JSON.stringify({
+            js: data.assetsByChunkName.main[0].split('/')[1],
+            css: data.assetsByChunkName.main[1].split('/')[1]
+          }, null, 2)
+        }
+      }),
+      new ArchivePlugin()
     ]
   })
 }
