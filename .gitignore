@@ -3,3 +3,6 @@ npm-debug.log
 coverageReport/
 .vscode
 dist/*
+*.tar
+*.gz
+*.zip
