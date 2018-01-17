@@ -14,6 +14,9 @@ class StarRating extends Component {
     return stars
   }
   render () {
+    if (!this.props.rating) {
+      return null
+    }
     return (
       <span className='MyRetail-rating'>
         {this.getStars().map((starClass, idx) =>
@@ -25,7 +28,7 @@ class StarRating extends Component {
 }
 
 StarRating.propTypes = {
-  rating: PropTypes.string.isRequired
+  rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 }
 
 export default StarRating
