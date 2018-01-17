@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import './index.less'
 
 class StarRating extends Component {
   getStars () {
-    const rating = (this.props.rating || 1)
+    const rating = parseInt(this.props.rating, 10)
     const stars = []
     let i = 1
     while (i < 6) {
@@ -14,17 +15,17 @@ class StarRating extends Component {
   }
   render () {
     return (
-      <div className='MyRetail-rating'>
+      <span className='MyRetail-rating'>
         {this.getStars().map((starClass, idx) =>
           <span key={idx} className={starClass}>★</span>
         )}
-      </div>
+      </span>
     )
   }
 }
 
 StarRating.propTypes = {
-  rating: PropTypes.number.isRequired
+  rating: PropTypes.string.isRequired
 }
 
 export default StarRating

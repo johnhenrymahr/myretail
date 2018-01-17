@@ -1,0 +1,98 @@
+@import (reference) '../../common.less';
+
+.myRetail-priceblock {
+  .row {
+    margin: 0px;
+  }
+  .col-xs-6, .col-sm-6 {
+    padding: 0px 5px;
+  }
+  .col-xs-4 {
+    padding: 0px 5px;
+  }
+  &__price {
+    font-size: 28px;
+    margin-bottom: 25px;
+    >span {
+      font-size: 12px;
+      text-transform: lowercase;
+      padding-left: 5px;
+    }
+  }
+  &__promotions {
+    padding: 15px 0px;
+    color: @red;
+    font-size: 15px;
+    border-top: 1px solid @gray25;
+    border-bottom: 1px solid @gray25;
+    li {
+      list-style-type: none;
+      margin-bottom: 5px;
+      .glyphicon {
+        padding-right: 10px;
+      }
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+  }
+
+  &__instore {
+     span {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      font-size: 12px;
+    }
+  }
+
+  &__quantity {
+    border: 1px solid @gray15;
+    border-radius: 3px;
+    padding: 2px 5px 0px 10px;;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    .clearfix();
+    &--num {
+      font-size: 20px;
+      padding: 0px 10px;
+      vertical-align: middle;
+      display: table-cell;;
+    }
+    >span:first-child {
+      float: left;
+      display: block;
+      padding-top: 5px;
+    }
+    >span:last-child {
+      float: right;
+      display: table;
+      .glyphicon {
+        display: table-cell;
+        vertical-align: middle;
+        color: @gray40;
+        font-size: 30px;
+        padding: 0px;
+      }
+    }
+   }
+   &__returns.row {
+     margin: 25px 5px;
+      display: table;
+      >div {
+        display: table-cell;
+        float: none;
+        vertical-align: middle;
+        color: @gray60;  
+      }
+      >div:first-child {
+        font-size: 20px;
+        padding: 0px;           
+      }
+      >div:last-child {
+        font-size: 11px;
+        border-left: 1px solid @gray25;
+      }
+   }
+}
