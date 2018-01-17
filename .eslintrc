@@ -19,6 +19,7 @@
         "expect": true,
         "it": true,
         "context": true,
-        "describe": true
+        "describe": true,
+        "beforeEach": true
     }
 }
