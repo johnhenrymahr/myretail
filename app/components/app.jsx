@@ -7,19 +7,34 @@ import ProductImage from './productImage'
 import PriceBlock from './priceBlock'
 import ProductFeatures from './productFeatures'
 import ProductReviews from './productReviews'
+import _ from 'lodash'
 import './app.less'
 
 class App extends Component {
   componentWillMount () {
-    this.props.actions.ui.loadData()
+    const loadData = _.get(this.props, 'actions.ui.loadData')
+    if (_.isFunction(loadData)) {
+      loadData()
+    }
+  }
+
+  renderPageError () {
+    return (
+      <main className='myRetail-item'>
+        <div className='myRetail-item__pageError'>
+          <span className='glyphicon glyphicon-warning-sign' />
+          <span>We’re sorry. This page is not currently available.</span>
+        </div>
+      </main>
+    )
   }
 
   renderBody () {
-    const { data, actions } = this.props
-    console.log('data', data)
+    const { actions } = this.props
+    const data = this.props.data || {}
     const title = _.get(data, 'skuDetails.title', '')
     return (
-      <main className='myRetail-item'>
+      <main className='myRetail-item myRetail-item__mainBody'>
         <div className='row'>
           <div className='col-xs-12 col-sm-6'>
             <h1>{title}</h1>
@@ -53,7 +68,9 @@ class App extends Component {
   }
 
   render () {
-    if (this.props.ui.hydrated) {
+    if (this.props.ui.pageError) {
+      return this.renderPageError()
+    } else if (this.props.ui.hydrated) {
       return this.renderBody()
     } else {
       return null
