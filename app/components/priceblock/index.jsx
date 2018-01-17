@@ -20,9 +20,11 @@ class PriceBlock extends Component {
     const { price, qualifier, promotions, online, instore, quantity } = this.props
     return (
       <div className='myRetail-priceblock'>
-        <div className='myRetail-priceblock__price'>
-          <strong>{price}</strong>{Boolean(qualifier) && <span>{qualifier}</span> }
-        </div>
+        {Boolean(price) &&
+          <div className='myRetail-priceblock__price'>
+            <strong>{price}</strong>{Boolean(qualifier) && <span>{qualifier}</span> }
+          </div>
+        }
         {promotions &&
           <ul className='myRetail-priceblock__promotions'>
             {promotions.map((item, idx) =>
@@ -35,13 +37,13 @@ class PriceBlock extends Component {
             <div className='myRetail-priceblock__quantity'>
               <span>quantity</span>
               <span>
-                <a href='' onClick={this.onDecrement} >
+                <a className='myRetail-priceblock__quantity--dec' href='' onClick={this.onDecrement} >
                   <span className='glyphicon glyphicon-minus-sign'>
                     <span className='sr-only'>Decrement item quantity by 1</span>
                   </span>
                 </a>
                 <span className='myRetail-priceblock__quantity--num'>{quantity}</span>
-                <a href='' onClick={this.onIncrement} >
+                <a className='myRetail-priceblock__quantity--inc' href='' onClick={this.onIncrement} >
                   <span className='glyphicon glyphicon-plus-sign'>
                     <span className='sr-only'>Increment quantity by 1</span>
                   </span>
@@ -62,7 +64,7 @@ class PriceBlock extends Component {
           </div>
           <div className='col-xs-6'>
             {online &&
-            <span className='myRetail-priceblock__instore'>
+            <span className='myRetail-priceblock__online'>
               <a className='btn btn-block btn-primary'>Add to Cart</a>
             </span>
             }
@@ -89,7 +91,7 @@ class PriceBlock extends Component {
 }
 
 PriceBlock.propTypes = {
-  price: PropTypes.string.isRequired,
+  price: PropTypes.string,
   qualifier: PropTypes.string,
   quantity: PropTypes.number,
   promotions: PropTypes.array,
