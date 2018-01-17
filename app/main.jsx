@@ -1,6 +1,6 @@
 
-require('react-hot-loader/patch')
-import "babel-polyfill";
+import 'react-hot-loader/patch'
+import 'babel-polyfill'
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
@@ -11,22 +11,22 @@ import App from './components/app'
 const contentId = document.getElementById('myretail')
 const store = configureStore(getInitialState(window.initData || {}))
 
-const renderApp = () => {
+const renderApp = (Component) => {
   render(
     <Provider store={store}>
       <AppContainer>
-        <App/>
+        <Component/>
       </AppContainer>
     </Provider>,
-    contentId  
+    contentId
   )
 }
-
 // Webpack Hot Module Replacement API
 if (module.hot) {
   module.hot.accept('./components/app', () => {
-    renderApp()
+    console.log('render app')
+    renderApp(App)
   })
 }
 
-renderApp()
+renderApp(App)
