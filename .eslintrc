@@ -20,6 +20,7 @@
         "it": true,
         "context": true,
         "describe": true,
-        "beforeEach": true
+        "beforeEach": true,
+        "SERVICE_URL": true
     }
 }

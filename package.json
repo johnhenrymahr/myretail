@@ -107,6 +107,9 @@
       "/node_modules/",
       "main.jsx"
     ],
+    "globals": {
+      "SERVICE_URL": "/path/to/nothing"
+    },
     "moduleDirectories": [
       "node_modules",
       "app"

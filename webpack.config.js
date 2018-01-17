@@ -77,7 +77,8 @@ if (TARGET === 'start') {
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
       new webpack.DefinePlugin({
-        localDev: true
+        localDev: true,
+        'SERVICE_URL': JSON.stringify('/api/lineItem')
       })
     ]
   })
@@ -89,6 +90,7 @@ if (TARGET === 'start') {
   let WebpackAutoInject = require('webpack-auto-inject-version')
   let ArchivePlugin = require('webpack-archive-plugin')
   let HtmlWebpackPlugin = require('html-webpack-plugin')
+  let serviceUrl = process.env.SERVICE_URL || '/api/url/not/defined'
 
   module.exports = merge(common, {
     output: {
@@ -148,6 +150,7 @@ if (TARGET === 'start') {
         allChunks: true
       }),
       new webpack.DefinePlugin({
+        'SERVICE_URL': JSON.stringify(serviceUrl),
         'process.env': {
           NODE_ENV: JSON.stringify('production')
         }
