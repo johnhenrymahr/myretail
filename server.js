@@ -16,7 +16,11 @@ app.use(router)
 app.use(
   require('webpack-dev-middleware')(compiler, {
     noInfo: true,
-    publicPath: webpackConfig.output.publicPath
+    publicPath: webpackConfig.output.publicPath,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
+    }
   })
 )
 
@@ -27,7 +31,7 @@ app.get(['/data'])
 app.get([
   '/'
 ], function (req, res) {
-  res.status(200).sendFile(path.join(__dirname,'templates/dev.html'))
+  res.status(200).sendFile(path.join(__dirname, 'templates/dev.html'))
 })
 
 if (require.main === module) {
