@@ -5,7 +5,8 @@ import { default as mapDispatchToProps } from '../state/actions'
 import { default as mapStateToProps } from '../state/props'
 import ProductImage from './productImage'
 import PriceBlock from './priceBlock'
-import ProductFeatures from './ProductFeatures'
+import ProductFeatures from './productFeatures'
+import ProductReviews from './productReviews'
 import './app.less'
 
 class App extends Component {
@@ -14,7 +15,8 @@ class App extends Component {
   }
 
   renderBody () {
-    const { data } = this.props
+    const { data, actions } = this.props
+    console.log('data', data)
     const title = _.get(data, 'skuDetails.title', '')
     return (
       <main className='myRetail-item'>
@@ -28,8 +30,9 @@ class App extends Component {
           <div className='col-xs-12 col-sm-6'>
             <PriceBlock
               {...data.pricing}
-              {...data.availability}
+              {...data.availabilty}
               {...data.skuDetails}
+              actions={actions}
               promotions={data.promotions}
             />
             <ProductFeatures
@@ -38,9 +41,12 @@ class App extends Component {
           </div>
         </div>
         <div className='row'>
-          <div className='col-xs-12'>
-            <p>reveiws component</p>
+          <div className='col-sm-6 col-xs-12'>
+            <ProductReviews
+              {...data.reviews}
+            />
           </div>
+          <div className='col-sm-6 col-xs-0'></div>
         </div>
       </main>
     )
