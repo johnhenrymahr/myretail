@@ -3,6 +3,7 @@ import request from '../../helpers/request'
 import { actions as dataActions } from './data'
 
 export const types = {
+  PAGE_ERROR: 'ui/pageError',
   LOADING: 'ui/loading',
   ERROR: 'ui/error',
   HYDRATED: 'ui/hydrated'
@@ -19,6 +20,11 @@ export default function (state = {}, action = {}) {
       return {
         ...state,
         hydrated: true
+      }
+    case types.PAGE_ERROR:
+      return {
+        ...state,
+        pageError: true
       }
     default:
       return state
@@ -37,6 +43,11 @@ export const actions = {
       type: types.HYDRATED
     }
   },
+  pageError: function () {
+    return {
+      type: types.PAGE_ERROR
+    }
+  },
   loadData: function () {
     return function (dispatch, getState) {
       const state = getState()
@@ -47,7 +58,10 @@ export const actions = {
           dispatch(dataActions.setData(response.data || {}))
           dispatch(actions.hydrated())
         })
-        .catch(function (error) {})
+        .catch(function () {
+          dispatch(actions.loading(false))
+          dispatch(actions.pageError())
+        })
     }
   }
 }

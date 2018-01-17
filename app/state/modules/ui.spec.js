@@ -19,6 +19,9 @@ jest.mock('../../helpers/request', () => {
               }
             })
             break
+          case 'path/to/bad':
+            reject(new Error())
+            break
           default:
             reject(new Error())
             break
@@ -43,6 +46,13 @@ describe('UI state module spec', () => {
       expect(reducer({hydrated: false, foo: 'bar'}, { type: types.HYDRATED }))
         .toEqual({foo: 'bar', hydrated: true})
     })
+    it('sets page error', () => {
+      expect(reducer({ foo: 'bar', pageError: false }, { type: types.PAGE_ERROR }))
+        .toEqual({
+          foo: 'bar',
+          pageError: true
+        })
+    })
   })
   context('action creators', () => {
     it('creats a loading action', () => {
@@ -50,6 +60,12 @@ describe('UI state module spec', () => {
         .toEqual({
           type: types.LOADING,
           payload: true
+        })
+    })
+    it('creates a page error', () => {
+      expect(actions.pageError())
+        .toEqual({
+          type: types.PAGE_ERROR
         })
     })
     it('creates hydrated action', () => {
@@ -87,6 +103,30 @@ describe('UI state module spec', () => {
               },
               {
                 type: types.HYDRATED
+              }
+            ])
+        })
+    })
+    it('calls correct actions for unsucessfull request', () => {
+      const store = mockStore({
+        ui: {
+          apiUrl: 'path/to/bad'
+        }
+      })
+      return store.dispatch(actions.loadData())
+        .then(function () {
+          expect(store.getActions())
+            .toEqual([
+              {
+                type: types.LOADING,
+                payload: true
+              },
+              {
+                type: types.LOADING,
+                payload: false
+              },
+              {
+                type: types.PAGE_ERROR
               }
             ])
         })
