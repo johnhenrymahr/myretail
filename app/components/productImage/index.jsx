@@ -88,7 +88,7 @@ class ProductImage extends Component {
 }
 
 ProductImage.propTypes = {
-  images: PropTypes.array.isRequired
+  images: PropTypes.array
 }
 
 export default ProductImage
