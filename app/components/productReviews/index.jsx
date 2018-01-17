@@ -70,7 +70,7 @@ class ProductReviews extends Component {
 
 ProductReviews.propTypes = {
   overallRating: PropTypes.string,
-  totalReviews: PropTypes.string,
+  totalReviews: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   pro: PropTypes.object,
   con: PropTypes.object
 }
