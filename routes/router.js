@@ -4,9 +4,9 @@ var router = express.Router()
 
 router.get('/api/lineItem', function (req, res) {
   res
-  .type('json')
-  .status(200)
-  .sendFile(path.join(__dirname, 'data', 'item-data.json'))
+    .type('json')
+    .status(200)
+    .sendFile(path.join(__dirname, 'data', 'item-data.json'))
 })
 
 module.exports = router
