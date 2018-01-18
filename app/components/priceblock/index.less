@@ -60,6 +60,21 @@
       vertical-align: middle;
       display: table-cell;;
     }
+    &--inc, &--dec {
+      .glyphicon {
+        display: table-cell;
+        vertical-align: middle;
+        color: @gray25;
+        font-size: 30px;
+        padding: 0px;
+      }
+      &:hover {
+        text-decoration: none;
+        .glyphicon {
+          color: @gray40;
+        }  
+      }
+    }
     >span:first-child {
       float: left;
       display: block;
@@ -67,14 +82,7 @@
     }
     >span:last-child {
       float: right;
-      display: table;
-      .glyphicon {
-        display: table-cell;
-        vertical-align: middle;
-        color: @gray40;
-        font-size: 30px;
-        padding: 0px;
-      }
+      display: table;      
     }
    }
    &__returns.row {
