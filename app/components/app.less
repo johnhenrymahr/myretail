@@ -26,8 +26,16 @@
   } 
 }
 
-#myretail {
+@import (reference) '../common.less';
 
+#myretail {
+  .myRetail-item__pageError {
+    font-size: 18px;
+    .glyphicon {
+      color: @red;
+      padding-right: 5px;
+    }
+  }
   .btn-secondary {
     background-color: black;
     color: white;

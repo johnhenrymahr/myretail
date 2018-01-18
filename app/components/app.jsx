@@ -23,7 +23,7 @@ class App extends Component {
       <main className='myRetail-item'>
         <div className='myRetail-item__pageError'>
           <span className='glyphicon glyphicon-warning-sign' />
-          <span>We’re sorry. This page is not currently available.</span>
+          <span><strong>We’re sorry.</strong> This page is not currently available.</span>
         </div>
       </main>
     )
