@@ -11,10 +11,10 @@ class ProductReviews extends Component {
     return (
       <div className='myRetail-reviews'>
         <div className='myRetail-reviews__overall'>
-          <div>
+          <div className='myRetail-reviews__overall--overall'>
             <StarRating rating={overallRating} /> <span>overall</span>
           </div>
-          <div>
+          <div className='myRetail-reviews__overall--total'>
             {Boolean(totalReviews && totalReviews > 0) &&
               <a href=''>view all {totalReviews} Reviews</a>
             }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Carousel, Modal, Glyphicon } from 'react-bootstrap'
+import { Carousel, Modal, Glyphicon, Button } from 'react-bootstrap'
 import _ from 'lodash'
 import './index.less'
 class ProductImage extends Component {
@@ -42,7 +42,10 @@ class ProductImage extends Component {
         <div className='myRetail-productImage'>
           <Modal show={this.state.modal} backdrop onHide={this.onLargerClick}>
             <Modal.Header closeButton onHide={this.onLargerClick}/>
-            <img src={primary} />
+            <img className='myRetail-productImage__main--image' src={primary} />
+            <Modal.Footer>
+              <Button onClick={this.onLargerClick} >Close</Button>
+            </Modal.Footer>
           </Modal>
           <div className='myRetail-productImage__main'>
             <div><img className='myRetail-productImage__main--image' src={primary} /></div>

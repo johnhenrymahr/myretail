@@ -22,12 +22,19 @@
   &__promotions {
     padding: 15px 0px;
     color: @red;
+    margin-bottom: 0px;
     font-size: 15px;
     border-top: 1px solid @gray25;
     border-bottom: 1px solid @gray25;
     li {
       list-style-type: none;
       margin-bottom: 5px;
+      >span {
+        >span {
+          display: table-cell;
+          vertical-align: middle;
+        }  
+      }
       .glyphicon {
         padding-right: 10px;
       }
@@ -35,6 +42,18 @@
         margin-bottom: 0px;
       }
     }
+  }
+
+  &__buttons.row, &__secondaryButtons.row {    
+    @media(max-width:@screen-sm-min) {
+      .col-xs-12 {
+        padding: 0px;
+        margin-bottom: 15px;
+      }
+      .btn-xs {
+        padding: 7px;
+      }
+    }  
   }
 
   &__instore {
@@ -86,7 +105,10 @@
     }
    }
    &__returns.row {
-     margin: 25px 5px;
+      margin: 25px 5px;
+      @media(max-width:@screen-sm-min) {
+        margin-bottom: 35px;
+      }  
       display: table;
       >div {
         display: table-cell;

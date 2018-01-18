@@ -3,13 +3,27 @@
 .myRetail-item {
   max-width: 1004px;
   margin: 50px auto;
+  padding: 0px;
+  @media(max-width:@screen-sm-min) {
+    margin: 20px auto;
+    width: 100%;
+    padding: 20px;
+  }
   h1 {
     font-weight: 100;
     font-size: 26px;
     text-align: center;
-    margin: 10px 50px;
     line-height: 115%;
+    width: 100%;
   }
+  > .row {
+    margin: 0px;
+    @media(max-width:@screen-sm-min) {
+      >.col-xs-12 {
+        padding: 0px;
+      }
+    }
+  } 
 }
 
 #myretail {
@@ -17,7 +31,7 @@
   .btn-secondary {
     background-color: black;
     color: white;
-    font-weight: 100;
+    font-weight: 200;
     font-size: 18px;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -25,7 +39,7 @@
   }
   .btn-primary {
     background-color: @red;
-    font-weight: 100;
+    font-weight: 200;
     font-size: 18px;
     letter-spacing: 1px;
     color: white;
@@ -37,5 +51,8 @@
     color: @gray80;
     border: none;
     text-transform: uppercase;
+    &:hover {
+      background-color: @gray10;
+    }
   }
 }

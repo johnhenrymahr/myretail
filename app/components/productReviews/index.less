@@ -15,6 +15,13 @@
         padding-top: 11px;
       }
     }
+    &--overall {
+      >span:last-child {
+        @media(max-width:@screen-sm-min) {
+          display: none;
+        }  
+      }
+    }
   }
   &__container {
     margin-top: 0px;

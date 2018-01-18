@@ -2,6 +2,7 @@
 
 .myRetail-productImage {
   margin-top: 50px;
+  margin-bottom: 20px;
 
   .carousel-control.left, .carousel-control.right {
     background: none;
@@ -10,10 +11,14 @@
   .glyphicon {
     font-weight: lighter;
     color: gray;
-  }
+  } 
   &__main {
     width: 100%;
     text-align: center;
+    &--image {
+      width: 100%;
+      height: auto;
+    }
     >div {
       margin-bottom: 50px;
     }
@@ -44,11 +49,22 @@
     }
     .carousel-control.left {
       width: 60px;
-      left: 30px;
+      text-align: left;
+      @media(max-width:@screen-sm-min) {
+        left: -30px;
+      }  
+      @media(min-width:@screen-sm-min) {
+        left: 30px;
+      }  
     }
     .carousel-control.right {
       width: 60px;
-      right: 30px;
+      @media(max-width:@screen-sm-min) {
+        right: -50px;
+      }  
+      @media(min-width:@screen-sm-min) {
+        right: 30px;
+      }  
     }
     &--image {
       width: 220px;

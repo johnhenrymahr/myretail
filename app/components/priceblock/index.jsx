@@ -28,7 +28,12 @@ class PriceBlock extends Component {
         {promotions &&
           <ul className='myRetail-priceblock__promotions'>
             {promotions.map((item, idx) =>
-              <li key={idx}><span className='glyphicon glyphicon-tag'></span>{item}</li>
+              <li key={idx}>
+                <span>
+                  <span className='glyphicon glyphicon-tag'></span>
+                  <span>{item}</span>
+                </span>
+              </li>
             )}
           </ul>
         }
@@ -54,7 +59,7 @@ class PriceBlock extends Component {
           <div className='col-sm-6 col-xs-0'></div>
         </div>
         <div className='myRetail-priceblock__buttons row'>
-          <div className='col-xs-6'>
+          <div className='col-xs-12 col-sm-6'>
             {instore &&
             <span className='myRetail-priceblock__instore'>
               <a href='#' className='btn btn-block btn-secondary'>Pick up in store</a>
@@ -62,7 +67,7 @@ class PriceBlock extends Component {
             </span>
             }
           </div>
-          <div className='col-xs-6'>
+          <div className='col-xs-12 col-sm-6'>
             {online &&
             <span className='myRetail-priceblock__online'>
               <a className='btn btn-block btn-primary'>Add to Cart</a>
@@ -71,17 +76,17 @@ class PriceBlock extends Component {
           </div>
         </div>
         <div className='myRetail-priceblock__returns row'>
-          <div className='col-xs-2'>returns</div>
-          <div className='col-xs-10'>This item must be returned within 30 days of the ship date. See return policy for details. Prices, promotions, styles and availability may vary by store and online.</div>
+          <div className='col-xs-3 col-sm-2'>returns</div>
+          <div className='col-xs-9 col-sm-10'>This item must be returned within 30 days of the ship date. See return policy for details. Prices, promotions, styles and availability may vary by store and online.</div>
         </div>
         <div className='myRetail-priceblock__secondaryButtons row'>
-          <div className='col-xs-4'>
+          <div className='col-sm-4 col-xs-12'>
             <a href='' className='btn btn-block btn-default btn-xs'>Add to Registry</a>
           </div>
-          <div className='col-xs-4'>
+          <div className='col-sm-4 col-xs-12'>
             <a href='' className='btn btn-block btn-default btn-xs'>Add to List</a>
           </div>
-          <div className='col-xs-4'>
+          <div className='col-sm-4 col-xs-12'>
             <a href='' className='btn btn-block btn-default btn-xs'>Share</a>
           </div>
         </div>
