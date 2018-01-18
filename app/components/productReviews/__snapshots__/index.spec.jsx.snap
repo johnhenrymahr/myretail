@@ -7,7 +7,9 @@ exports[`product reviews component spec renders correctly as snapshot 1`] = `
   <div
     className="myRetail-reviews__overall"
   >
-    <div>
+    <div
+      className="myRetail-reviews__overall--overall"
+    >
       <span
         className="MyRetail-rating"
       >
@@ -42,7 +44,9 @@ exports[`product reviews component spec renders correctly as snapshot 1`] = `
         overall
       </span>
     </div>
-    <div>
+    <div
+      className="myRetail-reviews__overall--total"
+    >
       <a
         href=""
       >

@@ -16,7 +16,7 @@ describe('Product Image component spec', () => {
       images: ['/path/images/test1.jpg']
     }
     const wrapper = shallow(<ProductImage {...props} />)
-    expect(wrapper.find('img.myRetail-productImage__main--image').length).toEqual(1)
+    expect(wrapper.find('img.myRetail-productImage__main--image').length).toEqual(2)
   })
   it('does not render the carousel when there is only 1 image', () => {
     const props = {
@@ -72,15 +72,15 @@ describe('Product Image component spec', () => {
       ]
     }
     const wrapper = shallow(<ProductImage {...props} />)
-    expect(wrapper.find('img.myRetail-productImage__main--image').props()['src'])
+    expect(wrapper.find('img.myRetail-productImage__main--image').at(0).props()['src'])
       .toEqual('/path/images/test1.jpg')
     wrapper.find(Carousel.Item).at(1).find('a').at(0).simulate('click', { preventDefault: jest.fn() })
-    expect(wrapper.find('img.myRetail-productImage__main--image').props()['src'])
+    expect(wrapper.find('img.myRetail-productImage__main--image').at(0).props()['src'])
       .toEqual('/path/images/test4.jpg')
     expect(wrapper.find(Modal).find('img').props().src)
       .toEqual('/path/images/test4.jpg')
   })
-  it('Opens a modal when teh show larger link is clicked', () => {
+  it('Opens a modal when the show larger link is clicked', () => {
     const props = {
       images: [
         '/path/images/test1.jpg',
